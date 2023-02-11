@@ -1,9 +1,29 @@
 # Document Format Reconstruction of Annual SEC Filings with Deep Transformer Networks
 
-## Model description
+## Model description & intended uses
+Reviewing a SEC (Securities and Exchange Commission) filing is important for investors as it provides crucial information about a public company, such as its financial performance, business operations, and risk factors. In this way, investors can make informed decisions about whether to buy, hold, or sell a company’s securities, and obtain important disclosures about a company’s financial condition and business operations.
 
+One of the most important document is the annual report (10-K filing) which provides a better understanding of a company’s financial strength, competitive position, and growth prospects.
 
-## Intended uses
+Notwithstanding SEC suggests a document format with a specific division of topics in 18 different items of the document to improve readability and analysis, several companies in the last years have introduced their own format and organization of the contents.
+
+This condition makes humanbased and automatic analysis inherently more difficult also because the documents becomes every year longer and complex. Moreover, large-scale contents retrieval from SEC filings can be tough since report are made available with different formats which are often unstructured or semisemistructured.
+
+This model is able to assign, to a given paragraph, the correspondant item based on SEC-like format. In this way, the model allows many downstream tasks, as qualitative document reconstruction, document similarity detection etc.
+
+Specifically, proposed model is obtained as result of a fine-tuning procedure of a combination of **XLNet**, **Bi-LSTM** and **DNN**.
+
+Model's architecture and hyperparameters are shown in the following table:
+
+| Parameter | Value |
+| :---        |    :----:   | 
+| **BiLSTM’s architecture** | Two stacked LSTMs with 1024 units for each one, and a dropout of 0.2 between them. |
+| **DNN’s architecture** | A neural network with two hidden layers of 512 and 256 units, and a dropout of 0.2 after these layers. | 
+| **Hidden and Attention dropout** | 0.1 |
+| **CLS token dropout**  | 0.0 |
+| **Batch size** | 32 |
+| **Learning rate** | 5e-5  |
+| **Best epoch** | 2 |
 
 
 ## Pre-requisites
